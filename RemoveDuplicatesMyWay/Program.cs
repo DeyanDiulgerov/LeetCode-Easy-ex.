@@ -36,35 +36,28 @@ namespace RemoveDuplicates
 
         public static int[] RemoveDuplicates(int[] nums)
         {
-            if (nums.Length == 0)
-                return nums;
+             if (nums.Length == 0)
+                return null;
             else if (nums.Length == 1)
                 return nums;
             else
             {
+                var newList = new List<int>(nums);
+
                 for (int i = 0; i < nums.Length; i++)
                 {
                     for (int j = 0; j < nums.Length; j++)
                     {
-                        if (nums[i] == nums[j] && i != j)
+                        if (i != j && nums[i] == nums[j])
                         {
-                            var newNum = nums[j];
-                            //Console.WriteLine(String.Join(", ", nums));
-                            //nums = nums.Except(new int[] { nums[j] }).ToArray();
-                            nums = nums.Where(x => x != nums[j]).ToArray();
-                            nums = nums.Prepend(newNum).ToArray();
-                            //Console.WriteLine(String.Join(", ", nums));
-                            //Console.WriteLine($"K === {String.Join(", ", listNums)}");
+                            newList.RemoveAll(x => x == nums[j]);
+                            newList.Add(nums[j]);
                         }
                     }
                 }
-
-                var newList = new List<int>(nums);
                 newList.Sort();
-                //Console.WriteLine(String.Join(",", newList));
-                //Console.WriteLine(String.Join(",", nums));
-                return newList.ToArray();
-            }
+                nums = newList.ToArray();
+                return nums;
         }
     }
 }
