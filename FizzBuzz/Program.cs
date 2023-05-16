@@ -17,37 +17,25 @@ namespace FizzBuzz
 
         public static IList<string> FizzBuzz(int n)
         {
-            var result = new List<string>(n);
-            int fizz = 0;
-            int buzz = 0;
+            var buzzed = new List<string>();
 
-            for (int i = 1; i <= n; i++)
+            for (int i = 0; i <= n; i++)
             {
-                fizz++;
-                buzz++;
-                if (fizz == 3 && buzz == 5)
+                if (i != 0)
                 {
-                    result.Add("FizzBuzz");
-                    fizz = 0;
-                    buzz = 0;
-                }
-                else if (fizz == 3)
-                {
-                    result.Add("Fizz");
-                    fizz = 0;
-                }
-                else if (buzz == 5)
-                {
-                    result.Add("Buzz");
-                    buzz = 0;
-                }
-                else
-                {
-                    result.Add(i.ToString());
+                    if (i % 5 == 0 && i % 3 == 0)
+                        buzzed.Add("FizzBuzz");
+                    else if (i % 3 == 0)
+                        buzzed.Add("Fizz");
+                    else if (i % 5 == 0)
+                        buzzed.Add("Buzz");
+                    else
+                        buzzed.Add(i.ToString());
                 }
             }
 
-            return result;
+            Console.WriteLine(String.Join(",", buzzed));
+            return buzzed;
         }
     }
 }
