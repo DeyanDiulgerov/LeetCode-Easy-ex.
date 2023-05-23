@@ -21,19 +21,22 @@ namespace LongestCommonPrefix
 
         public static string LongestCommonPrefix(string[] strs)
         {
-            int counter = 0;
-            var sb = new StringBuilder();
+            if (strs.Count() == 0 || strs.Count() == 1)
+                return String.Join(",", strs);
 
-            var shortest = s.OrderBy(x => x.Length).First();
+            var shortest = strs.OrderBy(x => x.Length).First();
+            var sb = new StringBuilder();
+            var counter = 0;
 
             foreach (var letter in shortest)
             {
-                if (s.Any(x => x[counter] != letter))
+                if (strs.Any(x => x[counter] != shortest[counter]))
                     break;
 
                 sb.Append(letter);
                 counter++;
             }
+
 
             return sb.ToString();
         }
