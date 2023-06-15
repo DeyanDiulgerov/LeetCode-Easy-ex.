@@ -90,4 +90,6 @@ namespace DiagonalSum
             }
 
             return sum;
+        }
+    }
 }
