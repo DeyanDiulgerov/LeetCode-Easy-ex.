@@ -26,29 +26,19 @@ namespace NumberOfStudentsUnableToEatLunch
 
             while (true)
             {
-                if (queueStudents.Count() == 0)
+                if (queueStudents.Count() == 0 || queueStudents.All(x => x != sstackSandwiches.Peek()))
                     break;
 
                 var firstStudent = queueStudents.Peek();
                 var firstSandwich = sstackSandwiches.Peek();
 
-                if (queueStudents.All(x => x != firstSandwich))
-                    break;
+                queueStudents.Dequeue();
 
                 if (firstSandwich == firstStudent)
-                {
-                    queueStudents.Dequeue();
                     sstackSandwiches.Dequeue();
-                }
                 else
-                {
-                    queueStudents.Dequeue();
                     queueStudents.Enqueue(firstStudent);
-                }
             }
-
-            Console.WriteLine(String.Join(",", queueStudents));
-            Console.WriteLine(String.Join(",", sstackSandwiches));
 
             return queueStudents.Count();
         }
