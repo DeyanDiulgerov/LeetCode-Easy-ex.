@@ -20,10 +20,8 @@ namespace NumberOfSegmentsInAString
             if (s.All(x => x == ' ') || s == "")
                 return 0;
 
-            var splitted = s.Split(' ');
-            var listed = new List<string>(splitted);
+            var listed = s.Split(' ').ToList();
             listed.RemoveAll(x => x == "");
-
             return listed.Count();
         }
     }
