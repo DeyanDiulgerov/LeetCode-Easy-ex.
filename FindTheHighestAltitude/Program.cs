@@ -17,16 +17,12 @@ namespace FindTheHighestAltitude
         public static int FindTheHighestAltitude(int[] gain)
         {
             int n = gain.Length;
-            int[] result = new int[n + 1];
+            var resultArr = new int[n + 1];
 
-            result[0] = 0;
+            for (int i = 1; i < n + 1; i++)
+                resultArr[i] = resultArr[i - 1] + gain[i - 1];
 
-            for (int i = 1; i < result.Length; i++)
-            {
-                result[i] = result[i - 1] + gain[i - 1];
-            }
-
-            return result.Max();
+            return resultArr.Max();
         }
     }
 }
