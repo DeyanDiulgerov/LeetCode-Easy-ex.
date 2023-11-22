@@ -18,36 +18,28 @@ namespace ReverseVowelsOfAString
 
         public static string ReverseVowelsOfAString(string s)
         {
-            var allVowels = new List<char>() { 'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U' };
+            var allVowels = new List<char>()
+            { 'a', 'e', 'i', 'o', 'u','A', 'E', 'I', 'O',  'U'};
 
-            if (s.Count(x => allVowels.Contains(x)) <= 1)
-                return s;
+            var charS = s.ToCharArray();
+            int left = 0, right = charS.Length - 1;
 
-            var left = 0;
-            var right = s.Length - 1;
-
-            for (int i = 0; i < s.Length / 2; i++)
+            while (left < right)
             {
-                while (!allVowels.Contains(s[left]))
+                while (left < charS.Length && !allVowels.Contains(charS[left]))
                     left++;
-                while (!allVowels.Contains(s[right]))
+                while (right >= 0 && !allVowels.Contains(charS[right]))
                     right--;
-
-                if (left >= right || left == s.Length - 1 || right == 0)
+                if (left >= right)
                     break;
-                var permLeft = s[left].ToString();
-                var permRight = s[right].ToString();
 
-                s = s.Remove(left, 1);
-                s = s.Insert(left, permRight);
-                s = s.Remove(right, 1);
-                s = s.Insert(right, permLeft);
-
+                var temp = charS[left];
+                charS[left] = charS[right];
+                charS[right] = temp;
                 left++;
                 right--;
             }
-
-            return s;
+            return String.Join("", charS);
         }
     }
 }
