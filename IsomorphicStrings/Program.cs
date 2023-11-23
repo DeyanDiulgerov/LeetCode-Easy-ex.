@@ -10,6 +10,7 @@ namespace IsomorphicStrings
     {
         static void Main(string[] args)
         {
+            Console.WriteLine(IsomorphicStrings("badc", "baba"));
             Console.WriteLine(IsomorphicStrings("bbbaaaba", "aaabbbba"));
             Console.WriteLine(IsomorphicStrings("egg", "add"));
             Console.WriteLine(IsomorphicStrings("foo", "bar"));
@@ -18,18 +19,21 @@ namespace IsomorphicStrings
 
         public static bool IsomorphicStrings(string s, string t)
         {
-            var sMap = new Dictionary<char, char>();
-            var tMap = new Dictionary<char, char>();
-
+            var twoStringsMap = new Dictionary<char, char>();
             for (int i = 0; i < s.Length; i++)
             {
-                if (!sMap.ContainsKey(s[i]))
-                    sMap.Add(s[i], t[i]);
-                if (!tMap.ContainsKey(t[i]))
-                    tMap.Add(t[i], s[i]);
-
-                if (sMap[s[i]] != t[i] || tMap[t[i]] != s[i])
-                    return false;
+                if (!twoStringsMap.ContainsKey(s[i]))
+                {
+                    if (twoStringsMap.Any(x => x.Value == t[i]))
+                        return false;
+                    else
+                        twoStringsMap.Add(s[i], t[i]);
+                }
+                else
+                {
+                    if (twoStringsMap[s[i]] != t[i])
+                        return false;
+                }
             }
             return true;
         }
