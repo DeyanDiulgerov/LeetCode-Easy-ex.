@@ -23,10 +23,8 @@ namespace Convert1DArrayInto2DArray
         }
         public static int[][] Convert1DArrayInto2DArray(int[] original, int m, int n)
         {
-            if (m == 1 && n == 1 && original.Length > 1)
-                return new int[][] { };
-            else if (m * n > original.Length || m * n < original.Length)
-                return new int[][] { };
+            if (m * n != original.Length)
+                return new int[0][];
 
             int indexCount = 0;
             var resultMatrix = new int[m][];
