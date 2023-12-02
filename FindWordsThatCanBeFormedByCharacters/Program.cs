@@ -16,33 +16,32 @@ namespace FindWordsThatCanBeFormedByCharacters
 
         public static int FindWordsThatCanBeFormedByCharacters(string[] words, string chars)
         {
-            int sum = 0;
-            var permanentChars = chars;
+            string permChars = chars;
+            int result = 0;
 
-            foreach (var word in words)
+            for (int i = 0; i < words.Length; i++)
             {
-                string result = "";
-                chars = permanentChars;
+                bool isGoodString = true;
 
-                foreach (var letter in word)
+                for (int j = 0; j < words[i].Length; j++)
                 {
-                    if (chars.Contains(letter))
+                    if (chars.Contains(words[i][j]))
                     {
-                        result += letter;
-                        var index = chars.IndexOf(letter);
+                        var index = chars.IndexOf(words[i][j]);
                         chars = chars.Remove(index, 1);
                     }
                     else
                     {
-                        result = "";
+                        isGoodString = false;
                         break;
                     }
                 }
-                if (words.Any(x => x == result))
-                    sum += result.Length;
-            }
+                if (isGoodString)
+                    result += words[i].Length;
 
-            return sum;
+                chars = permChars;
+            }
+            return result;
         }
     }
 }
