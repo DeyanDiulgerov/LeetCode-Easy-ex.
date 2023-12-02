@@ -19,30 +19,25 @@ namespace FindSubsequenceOfLengthKWithTheLargestSum
         }
         public static int[] FindSubsequenceOfLengthKWithTheLargestSum(int[] nums, int k)
         {
-            var indexAndNumMap = new Dictionary<int, int>();
+            var listed = new List<int>(nums);
+            listed.Sort();
+            var biggestSumList = new List<int>();
+            var resultList = new List<int>();
+            int n = nums.Length;
+
+            for (int i = n - 1; i >= n - k; i--)
+                biggestSumList.Add(listed[i]);
 
             for (int i = 0; i < nums.Length; i++)
-                indexAndNumMap.Add(i, nums[i]);
-
-            var sortedByAscDict = indexAndNumMap.OrderByDescending(x => x.Value);
-            var dictWithKLenght = new Dictionary<int, int>();
-
-            foreach (var item in sortedByAscDict)
             {
-                if (k == 0)
+                if (biggestSumList.Contains(nums[i])
+                 && biggestSumList.Count(x => x == nums[i]) > resultList.Count(x => x == nums[i]))
+                    resultList.Add(nums[i]);
+
+                if (resultList.Count() == k)
                     break;
-
-                dictWithKLenght.Add(item.Key, item.Value);
-                k--;
             }
-
-            var resultDict = dictWithKLenght.OrderBy(x => x.Key);
-            var resultArr = new int[resultDict.Count()];
-
-            for (int i = 0; i < resultArr.Length; i++)
-                resultArr[i] = resultDict.ElementAt(i).Value;
-
-            return resultArr;
+            return resultList.ToArray();
         }
     }
 }
