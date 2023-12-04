@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D883203E-B108-4973-A081-406C06E0821A}</ProjectGuid>
+    <ProjectGuid>{522C5E2A-497D-401F-9A56-D3CB8E9DB671}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>Largest3SameDigitNumberInString</RootNamespace>
     <AssemblyName>Largest3SameDigitNumberInString</AssemblyName>
