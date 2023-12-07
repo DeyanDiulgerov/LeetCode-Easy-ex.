@@ -11,5 +11,18 @@ namespace TwoSumIV_InputIsABST
         static void Main(string[] args)
         {
         }
+
+        HashSet<int> seen = new HashSet<int>();
+        public bool FindTarget(TreeNode root, int k)
+        {
+            if (root is null)
+                return false;
+            if (seen.Contains(k - root.val))
+                return true;
+            seen.Add(root.val);
+
+            return FindTarget(root.left, k)
+                || FindTarget(root.right, k);
+        }
     }
 }
