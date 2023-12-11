@@ -13,7 +13,7 @@ namespace FindTheIndexOfTheFirstOccurrenceInAString
             Console.WriteLine(FindTheIndexOfTheFirstOccurrenceInAString("sadbutsad", "sad"));
             Console.WriteLine(FindTheIndexOfTheFirstOccurrenceInAString("leetcode", "leeto"));
         }
-
+        // Sliding Window - The acceptable solution
         public static int FindTheIndexOfTheFirstOccurrenceInAString(string haystack, string needle)
         {
             string substring = String.Concat(haystack.Take(needle.Length));
@@ -34,6 +34,11 @@ namespace FindTheIndexOfTheFirstOccurrenceInAString
             }
 
             return -1;
+        }
+        //Index Of - people say its not an acceptable solution
+        public int StrStr(string haystack, string needle) 
+        {
+            return haystack.IndexOf(needle);
         }
     }
 }
