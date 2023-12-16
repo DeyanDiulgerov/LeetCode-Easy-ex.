@@ -19,19 +19,47 @@ namespace ValidAnagram
 
         public static bool IsAnagram(string s, string t)
         {
+            s = String.Concat(s.OrderBy(x => x));
+            t = String.Concat(t.OrderBy(x => x));
+            return s == t;
+        }
+        //2nd Way - NO SORTING
+        public static bool IsAnagram(string s, string t)
+        {
             if (s.Length != t.Length)
                 return false;
+            var sLetterAndCountMap = new Dictionary<char, int>();
+            var tLetterAndCountMap = new Dictionary<char, int>();
 
-            var wordS = s.ToCharArray();
-            var wordT = t.ToCharArray();
-
-            Array.Sort(wordS);
-            Array.Sort(wordT);
-
-            for (int i = 0; i < wordS.Length; i++)
+            for (int i = 0; i < s.Length; i++)
             {
-                if (wordS[i] != wordT[i])
+                if (!sLetterAndCountMap.ContainsKey(s[i]))
+                    sLetterAndCountMap.Add(s[i], 1);
+                else
+                    sLetterAndCountMap[s[i]]++;
+
+                if (!tLetterAndCountMap.ContainsKey(t[i]))
+                    tLetterAndCountMap.Add(t[i], 1);
+                else
+                    tLetterAndCountMap[t[i]]++;
+            }
+
+            sLetterAndCountMap = sLetterAndCountMap
+                .OrderBy(x => x.Value)
+                .ToDictionary(x => x.Key, x => x.Value);
+            tLetterAndCountMap = tLetterAndCountMap
+               .OrderBy(x => x.Value)
+               .ToDictionary(x => x.Key, x => x.Value);
+
+            foreach (var kvp in sLetterAndCountMap)
+            {
+                if (!tLetterAndCountMap.ContainsKey(kvp.Key))
                     return false;
+                else
+                {
+                    if (tLetterAndCountMap[kvp.Key] != kvp.Value)
+                        return false;
+                }
             }
 
             return true;
