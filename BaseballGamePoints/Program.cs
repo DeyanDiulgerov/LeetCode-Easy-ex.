@@ -18,37 +18,29 @@ namespace BaseballGamePoints
 
         public static int BaseballGamePoints(string[] operations)
         {
-            var pointsList = new List<int>();
+            var resultStack = new Stack<int>();
+            int n = operations.Length;
 
-            for (int i = 0; i < operations.Length; i++)
+            for (int i = 0; i < n; i++)
             {
-                int newPoints = 0;
-                int firstNum = 0;
-
-                if (pointsList.Count() >= 1)
-                    firstNum = pointsList[pointsList.Count() - 1];
-
                 if (operations[i] == "+")
                 {
-                    newPoints = firstNum + pointsList[pointsList.Count() - 2];
-                    pointsList.Add(newPoints);
+                    var first = resultStack.Pop();
+                    var second = resultStack.Peek();
+                    resultStack.Push(first);
+                    resultStack.Push(first + second);
                 }
                 else if (operations[i] == "D")
                 {
-                    newPoints = firstNum * 2;
-                    pointsList.Add(newPoints);
+                    var curr = resultStack.Peek();
+                    resultStack.Push(curr * 2);
                 }
                 else if (operations[i] == "C")
-                {
-                    pointsList.Remove(firstNum);
-                }
+                    resultStack.Pop();
                 else
-                {
-                    pointsList.Add(int.Parse(operations[i]));
-                }
+                    resultStack.Push(int.Parse(operations[i]));
             }
-
-            return pointsList.Sum();
+            return resultStack.Sum();
         }
     }
 }
