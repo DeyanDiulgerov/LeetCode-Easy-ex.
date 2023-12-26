@@ -18,21 +18,16 @@ namespace KidsWithCandies
 
         public static IList<bool> KidsWithCandies(int[] candies, int extraCandies)
         {
-            List<bool> result = new List<bool>();
-            List<int> sortedCandieList = new List<int>(candies);
-            sortedCandieList.Sort();
+            int n = candies.Length;
+            List<bool> resultList = new List<bool>(n);
+            int maxCandies = candies.Max();
 
-            var biggestCandie = sortedCandieList.Last();
-
-            for (int i = 0; i < candies.Length; i++)
+            for (int i = 0; i < n; i++)
             {
-                if (candies[i] + extraCandies >= biggestCandie)
-                    result.Add(true);
-                else
-                    result.Add(false);
-
+                bool isBiggestCandies = candies[i] + extraCandies >= maxCandies;
+                resultList.Add(isBiggestCandies);
             }
-            return result;
+            return resultList;
         }
     }
 }
