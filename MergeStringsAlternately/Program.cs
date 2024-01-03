@@ -17,34 +17,21 @@ namespace MergeStringsAlternately
 
         public static string MergeStringsAlternately(string word1, string word2)
         {
-            bool firstWordBigger = false;
-            if (word1.Length > word2.Length)
-                firstWordBigger = true;
-            var shortest = Math.Min(word1.Length, word2.Length);
+            string resultStr = "";
+            int minLength = Math.Min(word1.Length, word2.Length);
+            int maxLength = Math.Max(word1.Length, word2.Length);
+            string currWord = word1.Length > word2.Length ? word1 : word2;
 
-            var result = "";
-
-            for (int i = 0; i < shortest; i++)
+            for (int i = 0; i < minLength; i++)
             {
-                result += word1[i];
-                result += word2[i];
+                resultStr += word1[i];
+                resultStr += word2[i];
             }
 
-            if (firstWordBigger)
-            {
-                for (int i = shortest; i < word1.Length; i++)
-                    result += word1[i];
-            }
-            else
-            {
-                if (word2.Length > shortest)
-                {
-                    for (int i = shortest; i < word2.Length; i++)
-                        result += word2[i];
-                }
-            }
+            for (int i = minLength; i < maxLength; i++)
+                resultStr += currWord[i];
 
-            return result;
+            return resultStr;
         }
     }
 }
