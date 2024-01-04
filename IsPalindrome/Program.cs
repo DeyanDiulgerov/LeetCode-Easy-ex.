@@ -33,7 +33,27 @@ namespace IsPalindrome
             var text = Console.ReadLine();
             Console.WriteLine(IsPalindrome(text));
         }
+        // Two Pointer Approach
+        public static bool IsPalindromeTwoPointer(string s)
+        {
+            string alphaNumeric = "";
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (char.IsLetterOrDigit(s[i]))
+                    alphaNumeric += s[i].ToString().ToLower();
+            }
 
+            int left = 0, right = alphaNumeric.Length - 1;
+            while (left < right)
+            {
+                if (alphaNumeric[left] != alphaNumeric[right])
+                    return false;
+
+                left++;
+                right--;
+            }
+            return true;
+        }
         public static string IsPalindrome(string text)
         {
             var reversed = "";
