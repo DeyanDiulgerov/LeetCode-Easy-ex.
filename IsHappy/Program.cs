@@ -34,25 +34,25 @@ namespace IsHappy
             //1^2 + 0^2 + 0^2 == 1
             //If n == 1 END.
 
-            var usedNums = new List<int>();
-            var sum = n;
-
+            var seenNums = new List<int>();
             while (true)
             {
-                var str = sum.ToString();
-                sum = 0;
-                for (int i = 0; i < str.Length; i++)
+                string strN = n.ToString();
+                int sum = 0;
+                for (int i = 0; i < strN.Length; i++)
                 {
-                    var num = int.Parse(str[i].ToString());
-                    sum += num * num;
+                    int newNum = int.Parse(strN[i].ToString());
+                    sum += newNum * newNum;
                 }
-                if (usedNums.Contains(sum))
-                    break;
+
+                if (seenNums.Contains(sum))
+                    return false;
                 if (sum == 1)
-                    break;
-                usedNums.Add(sum);
+                    return true;
+
+                seenNums.Add(sum);
+                n = sum;
             }
-            return !usedNums.Contains(sum);
         }
     }
 }
