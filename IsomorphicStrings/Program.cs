@@ -19,21 +19,18 @@ namespace IsomorphicStrings
 
         public static bool IsomorphicStrings(string s, string t)
         {
-            var twoStringsMap = new Dictionary<char, char>();
+            var sMap = new Dictionary<char, int>();
+            var tMap = new Dictionary<char, int>();
+
             for (int i = 0; i < s.Length; i++)
             {
-                if (!twoStringsMap.ContainsKey(s[i]))
-                {
-                    if (twoStringsMap.Any(x => x.Value == t[i]))
-                        return false;
-                    else
-                        twoStringsMap.Add(s[i], t[i]);
-                }
-                else
-                {
-                    if (twoStringsMap[s[i]] != t[i])
-                        return false;
-                }
+                if (!sMap.ContainsKey(s[i]))
+                    sMap.Add(s[i], t[i]);
+                if (!tMap.ContainsKey(t[i]))
+                    tMap.Add(t[i], s[i]);
+
+                if (sMap[s[i]] != t[i] || tMap[t[i]] != s[i])
+                    return false;
             }
             return true;
         }
