@@ -10,10 +10,12 @@ namespace ValidAnagram
     {
         static void Main(string[] args)
         {
+            Console.WriteLine(IsAnagram("aabbbb", "aaaabb"));
+            Console.WriteLine(IsAnagram("anagram", "nagaram"));
+            Console.WriteLine(IsAnagram("rat", "car"));
+            
             var s = Console.ReadLine();
             var t = Console.ReadLine();
-
-
             Console.WriteLine(IsAnagram(s, t));
         }
 
@@ -28,40 +30,38 @@ namespace ValidAnagram
         {
             if (s.Length != t.Length)
                 return false;
-            var sLetterAndCountMap = new Dictionary<char, int>();
-            var tLetterAndCountMap = new Dictionary<char, int>();
+            var sMap = new Dictionary<char, int>();
+            var tMap = new Dictionary<char, int>();
 
+            // Initialize Hash Maps
             for (int i = 0; i < s.Length; i++)
             {
-                if (!sLetterAndCountMap.ContainsKey(s[i]))
-                    sLetterAndCountMap.Add(s[i], 1);
+                if (!sMap.ContainsKey(s[i]))
+                    sMap.Add(s[i], 1);
                 else
-                    sLetterAndCountMap[s[i]]++;
+                    sMap[s[i]]++;
 
-                if (!tLetterAndCountMap.ContainsKey(t[i]))
-                    tLetterAndCountMap.Add(t[i], 1);
+                if (!tMap.ContainsKey(t[i]))
+                    tMap.Add(t[i], 1);
                 else
-                    tLetterAndCountMap[t[i]]++;
+                    tMap[t[i]]++;
             }
-
-            sLetterAndCountMap = sLetterAndCountMap
-                .OrderBy(x => x.Value)
-                .ToDictionary(x => x.Key, x => x.Value);
-            tLetterAndCountMap = tLetterAndCountMap
-               .OrderBy(x => x.Value)
-               .ToDictionary(x => x.Key, x => x.Value);
-
-            foreach (var kvp in sLetterAndCountMap)
+            // Check for every letter and it's frequency
+            foreach (var kvp in sMap.OrderBy(x => x.Value))
             {
-                if (!tLetterAndCountMap.ContainsKey(kvp.Key))
+                if (!tMap.ContainsKey(kvp.Key))
                     return false;
-                else
-                {
-                    if (tLetterAndCountMap[kvp.Key] != kvp.Value)
-                        return false;
-                }
+                else if (tMap[kvp.Key] != kvp.Value)
+                    return false;
             }
-
+            // Check for every letter and it's frequency
+            foreach (var kvp in tMap.OrderBy(x => x.Value))
+            {
+                if (!sMap.ContainsKey(kvp.Key))
+                    return false;
+                else if (sMap[kvp.Key] != kvp.Value)
+                    return false;
+            }
             return true;
         }
     }
