@@ -10,14 +10,7 @@ namespace GuessNumberHigherOrLower
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(GuessNumberHigherOrLower(10));
-            Console.WriteLine(GuessNumberHigherOrLower(1));
-            Console.WriteLine(GuessNumberHigherOrLower(2));
-        }
-
-        public static int GuessNumberHigherOrLower(int n)
-        {
-            /** 
+/** 
  * Forward declaration of guess API.
  * @param  num   your guess
  * @return 	     -1 if num is higher than the picked number
@@ -25,21 +18,29 @@ namespace GuessNumberHigherOrLower
  *               otherwise return 0
  * int guess(int num);
  */
-            int l = 0, r = n;
+            
+            Console.WriteLine(GuessNumberHigherOrLower(10));
+            Console.WriteLine(GuessNumberHigherOrLower(1));
+            Console.WriteLine(GuessNumberHigherOrLower(2));
+        }
 
-            while (true)
+        public static int GuessNumberHigherOrLower(int n)
+        {
+            int left = 0, right = n;
+
+            while (left <= right)
             {
-                int m = l + (r - l) / 2;
-                var res = guess(m);
+                int mid = left + (right - left) / 2;
+                int ourGuess = guess(mid);
 
-                if (res > 0)
-                    l = m + 1;
-                else if (res < 0)
-                    r = m - 1;
+                if (ourGuess == -1)
+                    right = mid - 1;
+                else if (ourGuess == 1)
+                    left = mid + 1;
                 else
-                    return m;
+                    return mid;
             }
-            return n;
+            return -1;
         }
     }
 }
