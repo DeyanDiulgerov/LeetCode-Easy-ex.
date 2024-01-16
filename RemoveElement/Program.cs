@@ -35,7 +35,8 @@ namespace RemoveElement
                 nums[right] = temp;
                 left++;
             }
-            return nums.Count(x => x != val);
+            return left;
+          //return nums.Count(x => x != val);
         }
         public static int RemoveElement(int[] nums, int val)
         {
