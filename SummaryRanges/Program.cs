@@ -16,56 +16,41 @@ namespace SummaryRanges
 
         public static IList<string> SummaryRanges(int[] nums)
         {
-            var result = new List<string>();
+            if (nums.Length == 1)
+                return new List<string>() { nums[0].ToString() };
 
+            var resultList = new List<string>();
             for (int i = 0; i < nums.Length; i++)
             {
-                var newList = new List<int>();
-                var text = "";
-                int counter = 0;
+                string text = "";
 
-                for (int j = i; j < nums.Length - 1; j++)
+                if(i == nums.Length - 1)
                 {
-                    if (j == i)
-                        newList.Add(nums[j]);
-
-                    if (nums[j] == nums[j + 1] - 1)
-                    {
-                        newList.Add(nums[j + 1]);
-                        counter++;
-                    }
-                    else
-                    {
-                        if (newList.Count() > 1)
-                        {
-                            text += newList.First();
-                            text += "->";
-                            text += newList.Last();
-                        }
-                        else if (newList.Count() == 1)
-                            text += newList.First();
-
-                        break;
-                    }
-                    //Console.WriteLine(String.Join(",", newList));
+                    if (nums[i - 1] != nums[i] - 1)
+                        text = $"{nums[i]}";
                 }
-                i += counter;
-                if (i != nums.Length - 1)
-                    result.Add(text);
                 else
                 {
-                    if (newList.Count() < 2)
-                        result.Add(nums[i].ToString());
-                    else if (newList.Count() >= 2)
+                    int permNumI = nums[i];
+                    int j = i + 1;
+                    while (j < nums.Length && nums[j] == nums[i] + 1)
                     {
-                        text += newList.First();
-                        text += "->";
-                        text += newList.Last();
-                        result.Add(text);
+                        i++;
+                        j++;
                     }
+                    j--;
+
+                    if (permNumI == nums[j])
+                        text = $"{permNumI}";
+                    else
+                        text = $"{permNumI}->{nums[j]}";
+
+                    i = j;
+
                 }
+                resultList.Add(text);
             }
-            return result;
+            return resultList;
         }
     }
 }
