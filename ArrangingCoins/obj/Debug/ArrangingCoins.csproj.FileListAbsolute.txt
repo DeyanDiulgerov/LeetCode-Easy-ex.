@@ -1,0 +1,8 @@
+C:\Users\Deyan Diulgerov\source\repos\7thInterviewPrep\ArrangingCoins\bin\Debug\ArrangingCoins.exe.config
+C:\Users\Deyan Diulgerov\source\repos\7thInterviewPrep\ArrangingCoins\bin\Debug\ArrangingCoins.exe
+C:\Users\Deyan Diulgerov\source\repos\7thInterviewPrep\ArrangingCoins\bin\Debug\ArrangingCoins.pdb
+C:\Users\Deyan Diulgerov\source\repos\7thInterviewPrep\ArrangingCoins\obj\Debug\ArrangingCoins.csproj.AssemblyReference.cache
+C:\Users\Deyan Diulgerov\source\repos\7thInterviewPrep\ArrangingCoins\obj\Debug\ArrangingCoins.csproj.SuggestedBindingRedirects.cache
+C:\Users\Deyan Diulgerov\source\repos\7thInterviewPrep\ArrangingCoins\obj\Debug\ArrangingCoins.csproj.CoreCompileInputs.cache
+C:\Users\Deyan Diulgerov\source\repos\7thInterviewPrep\ArrangingCoins\obj\Debug\ArrangingCoins.exe
+C:\Users\Deyan Diulgerov\source\repos\7thInterviewPrep\ArrangingCoins\obj\Debug\ArrangingCoins.pdb
