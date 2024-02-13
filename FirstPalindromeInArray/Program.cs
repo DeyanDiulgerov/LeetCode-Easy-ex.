@@ -14,7 +14,28 @@ namespace FirstPalindromeInArray
             Console.WriteLine(FirstPalindromeInArray(new string[] { "notapalindrome", "racecar" }));
             Console.WriteLine(FirstPalindromeInArray(new string[] { "def", "ghi" }));
         }
-
+        // Two Pointer
+        public string FirstPalindromeTwoPointer(string[] words)
+        {
+            foreach (string word in words)
+            {
+                int left = 0, right = word.Length - 1;
+                bool isPalindrome = true;
+                while (left < right)
+                {
+                    if (word[left] != word[right])
+                    {
+                        isPalindrome = false;
+                        break;
+                    }
+                    right--;
+                    left++;
+                }
+                if (isPalindrome)
+                    return word;
+            }
+            return "";
+        }
         public static string FirstPalindromeInArray(string[] words)
         {
             var reversed = "";
