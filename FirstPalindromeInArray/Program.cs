@@ -39,7 +39,6 @@ namespace FirstPalindromeInArray
         public static string FirstPalindromeInArray(string[] words)
         {
             var reversed = "";
-
             for (int i = 0; i < words.Count(); i++)
             {
                 reversed = "";
