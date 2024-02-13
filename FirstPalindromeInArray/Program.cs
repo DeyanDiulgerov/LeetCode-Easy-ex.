@@ -36,6 +36,7 @@ namespace FirstPalindromeInArray
             }
             return "";
         }
+        
         public static string FirstPalindromeInArray(string[] words)
         {
             var reversed = "";
