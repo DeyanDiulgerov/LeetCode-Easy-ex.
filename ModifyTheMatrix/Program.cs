@@ -49,6 +49,7 @@ namespace ModifyTheMatrix
             }
             return result;
         }
+        // Mapping every column with its max
         public static int[][] ModifyTheMatrixMap(int[][] matrix)
         {
             int m = matrix.Length;
