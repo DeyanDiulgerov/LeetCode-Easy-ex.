@@ -36,19 +36,18 @@ namespace IsPalindrome
         // Two Pointer Approach
         public static bool IsPalindromeTwoPointer(string s)
         {
+            s = s.ToLower();
             int left = 0, right = s.Length - 1;
             while (left < right)
             {
-                while (left < s.Length && !char.IsLetterOrDigit(s[left]))
+                while (left < right && !char.IsLetterOrDigit(s[left]))
                     left++;
-                while (right > 0 && !char.IsLetterOrDigit(s[right]))
+                while (left < right && !char.IsLetterOrDigit(s[right]))
                     right--;
-                if (left >= right || left >= s.Length)
+                if (left >= right)
                     break;
-
-                if (s[left].ToString().ToLower() != s[right].ToString().ToLower())
+                if (s[left] != s[right])
                     return false;
-
                 left++;
                 right--;
             }
