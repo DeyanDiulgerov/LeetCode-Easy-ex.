@@ -10,20 +10,16 @@ namespace IsValidParentheses
     {
         static void Main(string[] args)
         {
-            /*Given a string s containing just the characters '(', ')', '{', '}', '[' and ']',
-            * determine if the input string is valid.
-            An input string is valid if:
-            Open brackets must be closed by the same type of brackets.
-            Open brackets must be closed in the correct order.
-            Every close bracket has a corresponding open bracket of the same type.*/
-
-
+            Console.WriteLine(IsValid("]"));
+            Console.WriteLine(IsValid("["));
+            Console.WriteLine(IsValid("(([]))"));
+            Console.WriteLine(IsValid("(([)])"));
             Console.WriteLine(IsValidParentheses("{[]}"));
             Console.WriteLine(IsValidParentheses("()"));
             Console.WriteLine(IsValidParentheses("()[]{}"));
             Console.WriteLine(IsValidParentheses("(]"));
         }
-
+        //Intuative way
         public static bool IsValidParentheses(string s)
         {
             if (s == null || s == string.Empty)
@@ -43,6 +39,45 @@ namespace IsValidParentheses
                 return true;
             else
                 return false;
+        }
+        //Stack and switch cases
+        public static bool IsValid(string s)
+        {
+            Stack<char> stack = new Stack<char>();
+            for (int i = 0; i < s.Length; i++)
+            {
+                switch (s[i])
+                {
+                    case '(':
+                        stack.Push('(');
+                        break;
+                    case '{':
+                        stack.Push('{');
+                        break;
+                    case '[':
+                        stack.Push('[');
+                        break;
+                    case ')':
+                        if (stack.Count() == 0 || stack.Peek() != '(')
+                            return false;
+                        else
+                            stack.Pop();
+                        break;
+                    case '}':
+                        if (stack.Count() == 0 || stack.Peek() != '{')
+                            return false;
+                        else
+                            stack.Pop();
+                        break;
+                    case ']':
+                        if (stack.Count() == 0 || stack.Peek() != '[')
+                            return false;
+                        else
+                            stack.Pop();
+                        break;
+                }
+            }
+            return stack.Count() == 0;
         }
     }
 }
