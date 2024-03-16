@@ -12,6 +12,19 @@ namespace MiddleOfTheLinkedList
         {
 
         }
+        //2nd NEW Two Pointers
+        public ListNode MiddleNode2(ListNode head)
+        {
+            ListNode slow = head;
+            ListNode fast = head;
+            while(fast != null && fast.next != null)
+            {
+                slow = slow.next;
+                fast = fast.next.next;
+            }
+            return slow;
+        }
+        //1st Two Pointers
         public static ListNode MiddleNode(ListNode head)
         {
             int count = 0;
