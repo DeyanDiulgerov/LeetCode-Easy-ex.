@@ -14,7 +14,21 @@ namespace FindPivotIndex
             Console.WriteLine(FindPivotIndex(new int[] { 1, 2, 3 }));
             Console.WriteLine(FindPivotIndex(new int[] { 2, 1, -1 }));
         }
-
+        //2nd Way - Double prefix sum.
+        public static int PivotIndex2(int[] nums) 
+        {
+            int sum = 0, rightSum = 0;;
+            for(int i = 0; i < nums.Length; i++)
+                rightSum += nums[i];
+            for (int i = 0; i < nums.Length; i++)
+            {
+                rightSum -= nums[i];
+                if(sum == rightSum)
+                    return i;
+                sum += nums[i];
+            }
+            return -1;
+        }
         public static int FindPivotIndex(int[] nums)
         {
             for (int i = 0; i < nums.Length; i++)
