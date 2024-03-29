@@ -29,21 +29,22 @@ namespace PlusOne
 
         public static int[] PlusOne(int[] digits)
         {
-            int n = digits.Length;
-
-            for (int i = n - 1; i >= 0; i--)
+            if(digits.All(x => x == 9))
             {
-                if (digits[i] < 9)
-                {
-                    digits[i]++;
-                    return digits;
-                }
-                digits[i] = 0;
+                digits = new int[digits.Length + 1];
+                digits[0] = 1;
             }
-
-            int[] newNumber = new int[n + 1];
-            newNumber[0] = 1;
-            return newNumber;
+            else
+            {
+                int i = digits.Length - 1;
+                while (i >= 0 && digits[i] == 9)
+                {
+                    digits[i] = 0;
+                    i--;
+                }
+                digits[i] += 1;
+            }
+            return digits;
         }
     }
 }
