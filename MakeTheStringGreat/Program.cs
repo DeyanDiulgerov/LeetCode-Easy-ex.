@@ -17,7 +17,27 @@ namespace MakeTheStringGreat
             Console.WriteLine(MakeTheStringGreat("abBAcC"));
             Console.WriteLine(MakeTheStringGreat("s"));
         }
-
+        //2nd Way - Stack
+         public static string MakeTheStringGreatStack(string s)
+        {
+            Stack<char> stack = new Stack<char>();
+            stack.Push(s[0]);
+            for (int i = 1; i < s.Length; i++)
+            {
+                if (stack.Count() > 0 && s[i].ToString().ToLower() == stack.Peek().ToString().ToLower())
+                {
+                    if (char.IsUpper(s[i]) && char.IsUpper(stack.Peek()))
+                        stack.Push(s[i]);
+                    else if (char.IsUpper(s[i]) || char.IsUpper(stack.Peek()))
+                        stack.Pop();
+                    else
+                        stack.Push(s[i]);
+                }
+                else
+                    stack.Push(s[i]);
+            }
+            return String.Join("", stack.Reverse());
+        }
         public static string MakeTheStringGreat(string s)
         {
             int n = s.Length;
