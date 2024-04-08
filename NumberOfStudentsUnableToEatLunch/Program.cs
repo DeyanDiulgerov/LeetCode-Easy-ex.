@@ -21,26 +21,21 @@ namespace NumberOfStudentsUnableToEatLunch
 
         public static int NumberOfStudentsUnableToEatLunch(int[] students, int[] sandwiches)
         {
-            var queueStudents = new Queue<int>(students);
-            var sstackSandwiches = new Queue<int>(sandwiches);
-
+            Queue<int> queue = new Queue<int>(students);
+            Stack<int> stack = new Stack<int>(sandwiches.Reverse());
             while (true)
             {
-                if (queueStudents.Count() == 0 || queueStudents.All(x => x != sstackSandwiches.Peek()))
+                if (queue.All(x => x != stack.Peek()))
                     break;
-
-                var firstStudent = queueStudents.Peek();
-                var firstSandwich = sstackSandwiches.Peek();
-
-                queueStudents.Dequeue();
-
-                if (firstSandwich == firstStudent)
-                    sstackSandwiches.Dequeue();
+                if(queue.Peek() == stack.Peek())
+                {
+                    queue.Dequeue();
+                    stack.Pop();
+                }
                 else
-                    queueStudents.Enqueue(firstStudent);
+                    queue.Enqueue(queue.Dequeue());
             }
-
-            return queueStudents.Count();
+            return stack.Count;
         }
     }
 }
