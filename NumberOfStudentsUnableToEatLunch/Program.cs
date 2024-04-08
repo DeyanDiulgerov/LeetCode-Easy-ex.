@@ -18,7 +18,6 @@ namespace NumberOfStudentsUnableToEatLunch
                 new int[] { 1, 1, 1, 0, 0, 1 }, new int[] { 1, 0, 0, 0, 1, 1 }));
             Console.WriteLine(NumberOfStudentsUnableToEatLunch(new int[] { 1, 1, 0, 0 }, new int[] { 0, 1, 0, 1 }));
         }
-
         public static int NumberOfStudentsUnableToEatLunch(int[] students, int[] sandwiches)
         {
             Queue<int> queue = new Queue<int>(students);
