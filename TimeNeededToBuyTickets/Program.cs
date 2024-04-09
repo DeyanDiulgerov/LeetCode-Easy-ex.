@@ -17,24 +17,23 @@ namespace TimeNeededToBuyTickets
 
         public static int TimeNeededToBuyTickets(int[] tickets, int k)
         {
-            int counter = 0;
-
-            while (tickets[k] > 0)
+            int count = 0;
+            int time = 0;
+            int person = tickets[k];
+            while (count < person)
             {
                 for (int i = 0; i < tickets.Length; i++)
                 {
-                    if (tickets[i] != 0)
-                        counter++;
-
-                    if (tickets[i] > 0)
-                        tickets[i]--;
-
+                    if (tickets[i] == 0)
+                        continue;
                     if (tickets[k] == 0)
-                        return counter;
+                        break;
+                    tickets[i]--;
+                    time++;
                 }
+                count++;
             }
-
-            return counter;
+            return time;
         }
     }
 }
