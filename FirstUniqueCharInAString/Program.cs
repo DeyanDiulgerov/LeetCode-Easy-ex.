@@ -37,36 +37,20 @@ namespace FirstUniqueCharInAString
             Console.WriteLine(FirstUniqueChar(input12));
         }
 
-        public static int FirstUniqueChar(string s)
+        public static int FirstUniqChar(string s)
         {
-            if (s.Length == 1)
-                return 0;
-            else if (s.Length == 2 && s[0] != s[1])
-                return 0;
-
-            var newChamp = 0;
-            bool isFound = true;
-
-            for (int i = 0; i < s.Length; i++)
+            var map = new Dictionary<char, int>();
+            for(int i = 0; i < s.Length; i++)
             {
-                isFound = true;
-                for (int j = 0; j < s.Length; j++)
-                {
-                    if (s[i] != s[j] && i != j)
-                    {
-                        newChamp = i;
-                    }
-                    else if (s[i] == s[j] && i != j)
-                    {
-                        newChamp = -1;
-                        isFound = false;
-                        break;
-                    }
-                }
-                if (isFound)
-                    break;
+                if(!map.ContainsKey(s[i]))
+                    map.Add(s[i], 1);
+                else
+                    map[s[i]]++;
             }
-            return newChamp;
+            foreach(var kvp in map)
+                if(kvp.Value == 1)
+                    return s.IndexOf(kvp.Key);
+            return -1;
         }
     }
 }
