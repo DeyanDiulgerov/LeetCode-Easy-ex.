@@ -17,43 +17,26 @@ namespace LatestTimeYouCanObtainAfterReplacingCharacters
         }
         public static string LatestTimeYouCanObtainAfterReplacingCharacters(string s)
         {
-            if (s[4] == '?')
+            char[] charS = s.ToCharArray();
+            if (charS[4] == '?')
+                charS[4] = '9';
+            if (charS[3] == '?')
+                charS[3] = '5';
+            if (charS[0] == '?')
             {
-                s = s.Remove(4, 1);
-                s = s.Insert(4, "9");
-            }
-            if (s[3] == '?')
-            {
-                s = s.Remove(3, 1);
-                s = s.Insert(3, "5");
-            }
-            if (s[0] == '?')
-            {
-                if (s[1] == '?' || s[1] == '0' || s[1] == '1')
-                {
-                    s = s.Remove(0, 1);
-                    s = s.Insert(0, "1");
-                }
+                if (charS[1] == '?' || charS[1] == '0' || charS[1] == '1')
+                    charS[0] = '1';
                 else
-                {
-                    s = s.Remove(0, 1);
-                    s = s.Insert(0, "0");
-                }
+                    charS[0] = '0';
             }
-            if (s[1] == '?')
+            if (charS[1] == '?')
             {
-                if (s[0] == '1')
-                {
-                    s = s.Remove(1, 1);
-                    s = s.Insert(1, "1");
-                }
-                else if (s[0] == '0')
-                {
-                    s = s.Remove(1, 1);
-                    s = s.Insert(1, "9");
-                }
+                if (charS[0] == '1')
+                    charS[1] = '1';
+                else if (charS[0] == '0')
+                    charS[1] = '9';
             }
-            return s;
+            return String.Join("", charS);
         }
     }
 }
