@@ -37,21 +37,17 @@ namespace IsPalindrome
         public static bool IsPalindromeTwoPointer(string s)
         {
             s = s.ToLower();
-            int left = 0, right = s.Length - 1;
-            while (left < right)
+            List<char> charS = s.ToCharArray().ToList();
+            charS.RemoveAll(x => !char.IsLetterOrDigit(x));
+            int left = 0, right = charS.Count - 1;
+            while(left < right)
             {
-                while (left < right && !char.IsLetterOrDigit(s[left]))
-                    left++;
-                while (left < right && !char.IsLetterOrDigit(s[right]))
-                    right--;
-                if (left >= right)
+                if(charS[left] != charS[right])
                     break;
-                if (s[left] != s[right])
-                    return false;
                 left++;
                 right--;
             }
-            return true;
+            return left >= right;
         }
         public static string IsPalindrome(string text)
         {
