@@ -13,35 +13,29 @@ namespace ReverseWordsInAStringIII
             Console.WriteLine(ReverseWordsInAStringIII("Let's take LeetCode contest"));
             Console.WriteLine(ReverseWordsInAStringIII("God Ding"));
         }
-
         public static string ReverseWordsInAStringIII(string s)
         {
-            var reversed = "";
-            var testWord = "";
-
-            for (int i = 0; i < s.Length; i++)
+            string[] splitted = s.Split(' ');
+            for(int i = 0; i < splitted.Count(); i++)
             {
-                if (i == s.Length - 1)
-                {
-                    testWord += s[i];
-
-                    for (int j = testWord.Length - 1; j >= 0; j--)
-                        reversed += testWord[j];
-                }
-                else if (s[i] == ' ')
-                {
-                    for (int j = testWord.Length - 1; j >= 0; j--)
-                        reversed += testWord[j];
-
-                    reversed += ' ';
-                    testWord = "";
-                }
-                else
-                    testWord += s[i];
+                string swapped = Swap(splitted[i]);
+                splitted[i] = swapped;
             }
-
-            reversed = reversed.TrimEnd();
-            return reversed;
+            return String.Join(" ", splitted);
+            string Swap(string word)
+            {
+                char[] charWord = word.ToCharArray();
+                int left = 0, right = charWord.Length - 1;
+                while(left < right)
+                {
+                    char temp = charWord[left];
+                    charWord[left] = charWord[right];
+                    charWord[right] = temp;
+                    left++;
+                    right--;
+                }
+                return String.Join("", charWord);
+            }
         }
     }
 }
