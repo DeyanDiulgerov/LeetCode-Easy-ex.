@@ -14,6 +14,15 @@ namespace StudentAttendanceRecordI
             Console.WriteLine(StudentAttendanceRecordI("PPALLP"));
             Console.WriteLine(StudentAttendanceRecordI("PPALLL"));
         }
+        // NEW
+        public bool StudentAttendanceRecordITWO(string s)
+        {
+            if(s.Contains("LLL")) 
+                return false;
+            if(s.Count(x => x == 'A') >= 2)
+                return false;
+            return true;
+        }
         public static bool StudentAttendanceRecordI(string s)
         {
             if (s.Count(x => x == 'A') >= 2)
