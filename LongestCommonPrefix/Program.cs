@@ -18,7 +18,12 @@ namespace LongestCommonPrefix
                 command = Console.ReadLine();
             }
         }
-
+        /*for(int i = 0; i < shortest.Length; i++)
+        {
+            if(strs.Any(x => x[i] != shortest[i]))
+                break;
+            sb.Append(shortest[i]);
+        }*/
         public static string LongestCommonPrefix(string[] strs)
         {
             StringBuilder sb = new StringBuilder();
