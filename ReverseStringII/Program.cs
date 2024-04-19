@@ -15,7 +15,34 @@ namespace ReverseStringII
             Console.WriteLine(ReverseStringII("abcdefg", 2));
             Console.WriteLine(ReverseStringII("abcd", 2));
         }
-
+        // Two-Pointers
+        public static string ReverseStringII2P(string s, int k)
+        {
+            char[] charS = s.ToCharArray();
+            if(k > charS.Length)
+                Swap(0, charS.Length - 1);
+            else
+            {
+                for(int i = 0; i < charS.Length; i += k * 2)
+                {
+                    if(i + k - 1 < charS.Length)
+                        Swap(i, i + k - 1);
+                    else
+                        Swap(i, charS.Length - 1);
+                }
+            }
+            return String.Join("", charS);
+            void Swap(int left, int right)
+            {
+                while(left < right)
+                {
+                    char temp = charS[left];
+                    charS[left] = charS[right];
+                    charS[right] = temp;
+                    left++;
+                    right--;
+            }
+        }
         public static string ReverseStringII(string s, int k)
         {
             for (int i = 0; i < s.Length; i += k * 2)
