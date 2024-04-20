@@ -28,38 +28,24 @@ namespace ValidAnagram
         //2nd Way - NO SORTING
         public static bool IsAnagram(string s, string t)
         {
-            if (s.Length != t.Length)
+            if(s.Length != t.Length)
                 return false;
-            var sMap = new Dictionary<char, int>();
-            var tMap = new Dictionary<char, int>();
-
-            // Initialize Hash Maps
-            for (int i = 0; i < s.Length; i++)
+            var mapS = new Dictionary<char, int>();
+            var mapT = new Dictionary<char, int>();
+            for(int i = 0; i < s.Length; i++)
             {
-                if (!sMap.ContainsKey(s[i]))
-                    sMap.Add(s[i], 1);
+                if(!mapS.ContainsKey(s[i]))
+                    mapS.Add(s[i], 1);
                 else
-                    sMap[s[i]]++;
-
-                if (!tMap.ContainsKey(t[i]))
-                    tMap.Add(t[i], 1);
+                    mapS[s[i]]++;
+                if(!mapT.ContainsKey(t[i]))
+                    mapT.Add(t[i], 1);
                 else
-                    tMap[t[i]]++;
+                    mapT[t[i]]++;
             }
-            // Check for every letter and it's frequency
-            foreach (var kvp in sMap.OrderBy(x => x.Value))
+            foreach(var kvp in mapS)
             {
-                if (!tMap.ContainsKey(kvp.Key))
-                    return false;
-                else if (tMap[kvp.Key] != kvp.Value)
-                    return false;
-            }
-            // Check for every letter and it's frequency
-            foreach (var kvp in tMap.OrderBy(x => x.Value))
-            {
-                if (!sMap.ContainsKey(kvp.Key))
-                    return false;
-                else if (sMap[kvp.Key] != kvp.Value)
+                if(!mapT.ContainsKey(kvp.Key) || mapT[kvp.Key] != kvp.Value)
                     return false;
             }
             return true;
