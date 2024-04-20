@@ -17,18 +17,11 @@ namespace SignOfTheProductOfAnArray
 
         public static int SignOfTheProductOfAnArray(int[] nums)
         {
-            int negativeCount = 0;
-
-            foreach (var num in nums)
-            {
-                if (num == 0)
-                    return 0;
-
-                if (num < 0)
-                    negativeCount++;
-            }
-
-            return (negativeCount % 2 == 0) ? 1 : -1;
+            if(nums.Any(x => x == 0))
+                return 0;
+            if(nums.Count(x => x < 0) % 2 != 0)
+                return -1;
+            return 1;
         }
     }
 }
