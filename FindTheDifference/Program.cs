@@ -17,18 +17,28 @@ namespace FindTheDifference
 
         public static char FindTheDifference(string s, string t)
         {
-            var permT = t;
-
-            for (int i = 0; i < permT.Length; i++)
+            var mapS = new Dictionary<char, int>();
+            var mapT = new Dictionary<char, int>();
+            for(int i = 0; i < s.Length; i++)
             {
-                if (!s.Contains(permT[i]))
-                    return permT[i];
-
-                s = s.Remove(s.IndexOf(permT[i]), 1);
-                t = t.Remove(t.IndexOf(permT[i]), 1);
+                if(!mapS.ContainsKey(s[i]))
+                    mapS.Add(s[i], 1);
+                else
+                    mapS[s[i]]++;
             }
-
-            return ' ';
+            for(int i = 0; i < t.Length; i++)
+            {
+                if(!mapT.ContainsKey(t[i]))
+                    mapT.Add(t[i], 1);
+                else
+                    mapT[t[i]]++;
+            }
+            foreach(var kvp in mapT)
+            {
+                if(!mapS.ContainsKey(kvp.Key) || mapS[kvp.Key] < kvp.Value)
+                    return kvp.Key;
+            }
+            return 'a';
         }
     }
 }
