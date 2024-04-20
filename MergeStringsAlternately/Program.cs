@@ -17,20 +17,17 @@ namespace MergeStringsAlternately
 
         public static string MergeStringsAlternately(string word1, string word2)
         {
-            int minLength = word1.Length <= word2.Length ? word1.Length : word2.Length;
-            string biggerWord = word1.Length <= word2.Length ? word2 : word1;
-            string res = "";
-            for(int i = 0; i < biggerWord.Length; i++)
+            int minLength = Math.Min(word1.Length, word2.Length);
+            string biggerWord = word1.Length >= word2.Length ? word1 : word2;
+            StringBuilder sb = new StringBuilder();
+            for(int i = 0; i < minLength; i++)
             {
-                if(i < minLength)
-                {
-                    res += word1[i];
-                    res += word2[i];
-                }
-                else
-                    res += biggerWord[i];
+                sb.Append(word1[i]);
+                sb.Append(word2[i]);
             }
-            return res;
+            for(int i = minLength; i < biggerWord.Length; i++)
+                sb.Append(biggerWord[i]);
+            return sb.ToString();
         }
     }
 }
