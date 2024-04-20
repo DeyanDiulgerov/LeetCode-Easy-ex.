@@ -16,21 +16,16 @@ namespace RobotReturnToOrigin
 
         public static bool RobotReturnToOrigin(string moves)
         {
-            var moveAndCountDict = new Dictionary<char, int>();
-
-            moveAndCountDict.Add('L', 0);
-            moveAndCountDict.Add('R', 0);
-            moveAndCountDict.Add('U', 0);
-            moveAndCountDict.Add('D', 0);
-
-            for (int i = 0; i < moves.Length; i++)
-                moveAndCountDict[moves[i]]++;
-
-            if (moveAndCountDict['L'] == moveAndCountDict['R']
-             && moveAndCountDict['D'] == moveAndCountDict['U'])
-                return true;
-            else
-                return false;
+            var map = new Dictionary<char, int>()
+            {
+                {'U', 0},
+                {'D', 0},
+                {'L', 0},
+                {'R', 0},
+            };
+            for(int i = 0; i < moves.Length; i++)
+                map[moves[i]]++;
+            return map['U'] == map['D'] && map['L'] == map['R'];
         }
     }
 }
