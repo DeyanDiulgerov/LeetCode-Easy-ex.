@@ -16,23 +16,12 @@ namespace CanMakeArithmeticProgression
 
         public static bool CanMakeArithmeticProgression(int[] arr)
         {
-            var listed = new List<int>(arr);
-            listed.Sort();
-
-            int counter = 0;
-
-            for (int i = 0; i < listed.Count(); i++)
+            Array.Sort(arr);
+            int diff = arr[1] - arr[0];
+            for(int i = 2; i < arr.Length; i++)
             {
-                if (i < listed.Count() - 1)
-                    counter = listed[i + 1] - listed[i];
-
-                for (int j = i + 1; j < listed.Count(); j++)
-                {
-                    if (listed[j] - listed[i] != counter)
-                        return false;
-
-                    i++;
-                }
+                if(arr[i] - arr[i - 1] != diff)
+                    return false;
             }
             return true;
         }
