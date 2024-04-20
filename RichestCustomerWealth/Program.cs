@@ -37,21 +37,10 @@ namespace RichestCustomerWealth
 
         public static int MaximumWealth(int[][] accounts)
         {
-            var sum = 0;
-            var maxWealth = 0;
-
-            foreach (var item in accounts)
-            {
-                sum = 0;
-                for (int i = 0; i < item.Length; i++)
-                {
-                    sum += item[i];
-
-                    maxWealth = Math.Max(sum, maxWealth);
-                }
-            }
-
-            return maxWealth;
+            int max = 0;
+            foreach(int[] account in accounts)
+                max = Math.Max(max, account.Sum());
+            return max;
         }
     }
 }
