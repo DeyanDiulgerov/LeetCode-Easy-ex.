@@ -20,29 +20,24 @@ namespace WordPattern
 
         public static bool WordPattern(string pattern, string s)
         {
-            var splittedS = s.Split(' ').ToArray();
-
-            if (pattern.Length != splittedS.Count())
+            string[] splitted = s.Split(' ');
+            if(pattern.Length != splitted.Length)
                 return false;
-
-            var letterAndStringDict = new Dictionary<char, string>();
-
-            for (int i = 0; i < pattern.Length; i++)
+            var map = new Dictionary<char, string>();
+            for(int i = 0; i < pattern.Length; i++)
             {
-                if (!letterAndStringDict.ContainsKey(pattern[i]))
+                if(!map.ContainsKey(pattern[i]))
                 {
-                    if (letterAndStringDict.Any(x => x.Value == splittedS[i]))
+                    if(map.ContainsValue(splitted[i]))
                         return false;
-
-                    letterAndStringDict.Add(pattern[i], splittedS[i]);
+                    map.Add(pattern[i], splitted[i]);
                 }
                 else
                 {
-                    if (letterAndStringDict[pattern[i]] != splittedS[i])
+                    if(map[pattern[i]] != splitted[i])
                         return false;
                 }
             }
-
             return true;
         }
     }
