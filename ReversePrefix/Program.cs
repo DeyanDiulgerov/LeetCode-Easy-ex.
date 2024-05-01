@@ -17,27 +17,18 @@ namespace ReversePrefix
 
         public static string ReversePrefix(string word, char ch)
         {
-            if (!word.Contains(ch))
-                return word;
-
-            var test = "";
-            var reversed = "";
-
-            for (int i = 0; i < word.Length; i++)
+            int index = word.IndexOf(ch);
+            char[] charW = word.ToCharArray();
+            int left = 0, right = index;
+            while(left < right)
             {
-                test += word[i];
-
-                if (word[i] == ch)
-                    break;
+                char temp = charW[left];
+                charW[left] = charW[right];
+                charW[right] = temp;
+                left++;
+                right--;
             }
-
-            for (int i = test.Length - 1; i >= 0; i--)
-                reversed += test[i];
-
-            word = word.Remove(0, test.Length);
-            word = word.Insert(0, reversed);
-
-            return word;
+            return String.Join("", charW);
         }
     }
 }
