@@ -17,20 +17,16 @@ namespace LargestPositiveIntThatExistsWithItsNegative
 
         public static int LargestPositiveIntThatExistsWithItsNegative(int[] nums)
         {
-            var listedNums = new List<int>(nums);
-            listedNums.Sort();
-
-            for (int i = 0; i < nums.Length; i++)
-            {
-                var maxNum = listedNums.Last();
-
-                if (listedNums.Contains(-maxNum))
-                    return maxNum;
-
-                listedNums.Remove(maxNum);
-            }
-
-            return -1;
+            var seen = new HashSet<int>();
+            foreach (int num in nums)
+                if (nums.Contains(-num))
+                {
+                    if (num < 0)
+                        seen.Add(-num);
+                    else
+                        seen.Add(num);
+                }
+            return seen.Count != 0 ? seen.Max() : -1;
         }
     }
 }
