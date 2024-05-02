@@ -18,7 +18,15 @@ namespace SingleNumber_FindNonRepeatingElement
 
         public static int SingleNumber(int[] nums)
         {
-            return nums.GroupBy(x => x).Where(x => x.Count() == 1).Select(x => x.Key).First();
-        }
+             var seen = new HashSet<int>();
+             foreach(int num in nums)
+             {
+                 if(seen.Contains(num))
+                     seen.Remove(num);
+                 else
+                     seen.Add(num);
+             }
+             return seen.First();
+    }
     }
 }
