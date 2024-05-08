@@ -19,22 +19,16 @@ namespace MaximumAverageSubarrayI
 
         public static double MaximumAverageSubarrayI(int[] nums, int k)
         {
-            double sum = 0;
-            double max = 0;
-            for (int i = 0; i < k; i++)
-                sum += nums[i];
-
-            int left = 0, right = k - 1;
-            max = sum / k;
-
-            while (right < nums.Length - 1)
+            double sum = nums.Take(k).Sum();
+            double max = sum / k;
+            int left = 0, right = k;
+            while(right < nums.Length)
             {
                 sum -= nums[left];
+                sum += nums[right];
                 left++;
                 right++;
-                sum += nums[right];
-                double newMax = sum / k;
-                max = Math.Max(max, newMax);
+                max = Math.Max(max, sum / k);
             }
             return max;
         }
