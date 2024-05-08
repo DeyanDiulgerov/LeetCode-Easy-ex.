@@ -16,34 +16,24 @@ namespace RelativeRanks
 
         public static string[] RelativeRanks(int[] score)
         {
-            int[] scoreSorted = new int[score.Length];
-            string[] resultArr = new string[score.Length];
-            score.CopyTo(scoreSorted, 0);
-
-            Array.Sort(scoreSorted);
-            Array.Reverse(scoreSorted);
-
-            Dictionary<int, string> scoreMap = new Dictionary<int, string>();
-
-            for (int i = 0; i < scoreSorted.Length; i++)
+            var map = new Dictionary<int, string>();
+            var listed = new List<int>(score);
+            listed.Sort();
+            var places = new List<string>()
+            {"Gold Medal", "Silver Medal", "Bronze Medal"};
+            for(int i = 3; i < score.Length; i++)
+                places.Add((i + 1).ToString());
+            int counterPlace = 0;
+            for(int i = listed.Count - 1; i >= 0; i--)
             {
-                string val = "";
-                if (i == 0)
-                    val = "Gold Medal";
-                else if (i == 1)
-                    val = "Silver Medal";
-                else if (i == 2)
-                    val = "Bronze Medal";
-                else
-                    val = (i + 1).ToString();
-
-                scoreMap.Add(scoreSorted[i], val);
+                int index = Array.IndexOf(score, listed[i]);
+                map.Add(index, places[counterPlace]);
+                counterPlace++;
             }
-
-            for (int i = 0; i < score.Length; i++)
-                resultArr[i] = scoreMap[score[i]];
-
-            return resultArr;
+            string[] res = new string[score.Length];
+            foreach(var kvp in map)
+                res[kvp.Key] = kvp.Value;
+            return res;
         }
     }
 }
