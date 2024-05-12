@@ -39,26 +39,22 @@ namespace LargestLocalValuesInAMatrix
 
         public static int[][] LargestLocalValuesInAMatrix(int[][] grid)
         {
-            int n = grid.Length - 2;
-            int[][] result = new int[n][];
-
-            for (int i = 0; i < n; i++)
+            int n = grid.Length;
+            int[][] res = new int[n - 2][];
+            for (int row = 0; row < n - 2; row++)
             {
-                result[i] = new int[n];
-                for (int j = 0; j < n; j++)
-                    result[i][j] = MaxFinder(i, j, grid);
+                int[] newRow = new int[n - 2];
+                for (int col = 0; col < n - 2; col++)
+                {
+                    int max = 0;
+                    for (int r = row; r < row + 3; r++)
+                        for (int c = col; c < col + 3; c++)
+                            max = Math.Max(max, grid[r][c]);
+                    newRow[col] = max;
+                }
+                res[row] = newRow;
             }
-            return result;
-        }
-
-        private static int MaxFinder(int x, int y, int[][] grid)
-        {
-            int max = int.MinValue;
-            for (int i = x; i < x + 3; i++)
-                for (int j = y; j < y + 3; j++)
-                    if (max < grid[i][j])
-                        max = grid[i][j];
-            return max;
+            return res;
         }
     }
 }
