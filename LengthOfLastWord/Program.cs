@@ -17,17 +17,11 @@ namespace LengthOfLastWord
 
         public static int LengthOfLastWord(string s)
         {
-            s = s.TrimEnd(' ');
-            int counter = 0;
-
-            for (int i = 0; i < s.Length; i++)
-            {
-                counter++;
-                if (s[i] == ' ')
-                    counter = 0;
-            }
-
-            return counter;
+            return s
+                .TrimEnd(' ')
+                .Split(' ')
+                .Last()
+                .Length;
         }
     }
 }
