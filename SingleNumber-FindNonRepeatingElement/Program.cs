@@ -18,15 +18,13 @@ namespace SingleNumber_FindNonRepeatingElement
 
         public static int SingleNumber(int[] nums)
         {
-             var seen = new HashSet<int>();
+             var set = new HashSet<int>();
              foreach(int num in nums)
              {
-                 if(seen.Contains(num))
-                     seen.Remove(num);
-                 else
-                     seen.Add(num);
+                 if(set.Add(num) == false)
+                     set.Remove(num);
              }
-             return seen.First();
-    }
+             return set.First();
+         }
     }
 }
