@@ -16,15 +16,14 @@ namespace BinarySearch
 
         public static int BinarySearch(int[] nums, int target)
         {
-            int n = nums.Length;
-            int l = 0, r = n;
-            while (l < r)
+            int left = 0, right = nums.Length - 1;
+            while(left <= right)
             {
-                int mid = l + (r - l) / 2;
-                if (nums[mid] < target)
-                    l = mid + 1;
-                else if (nums[mid] > target)
-                    r = mid;
+                int mid = left + (right - left) / 2;
+                if(nums[mid] > target)
+                    right = mid - 1;
+                else if(nums[mid] < target)
+                    left = mid + 1;
                 else
                     return mid;
             }
