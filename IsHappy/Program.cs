@@ -33,24 +33,17 @@ namespace IsHappy
             //6^2 + 8^2 == 100
             //1^2 + 0^2 + 0^2 == 1
             //If n == 1 END.
-
-            var seenNums = new List<int>();
-            while (true)
+            var seen = new HashSet<int>();
+            while(true)
             {
-                string strN = n.ToString();
                 int sum = 0;
-                for (int i = 0; i < strN.Length; i++)
-                {
-                    int newNum = int.Parse(strN[i].ToString());
-                    sum += newNum * newNum;
-                }
-
-                if (seenNums.Contains(sum))
-                    return false;
-                if (sum == 1)
+                string str = n.ToString();
+                foreach(char ch in str)
+                    sum += (ch - 48) * (ch - 48);
+                if(sum == 1)
                     return true;
-
-                seenNums.Add(sum);
+                if(seen.Add(sum) == false)
+                    return false;
                 n = sum;
             }
         }
