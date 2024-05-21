@@ -17,16 +17,16 @@ namespace PalindromeNumber
 
         public static bool PalindromeNumber(int x)
         {
-            var reversed = "";
-            var chX = x.ToString();
-
-            for (int i = chX.Length - 1; i >= 0; i--)
-                reversed += chX[i];
-
-            if (chX == reversed)
-                return true;
-            else
-                return false;
+            string str = x.ToString();
+            int left = 0, right = str.Length - 1;
+            while(left < right)
+            {
+                if(str[left] != str[right])
+                    break;
+                left++;
+                right--;
+            }
+            return left >= right;
         }
     }
 }
