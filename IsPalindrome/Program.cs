@@ -36,8 +36,7 @@ namespace IsPalindrome
         // Two Pointer Approach
         public static bool IsPalindromeTwoPointer(string s)
         {
-            s = s.ToLower();
-            List<char> charS = s.ToCharArray().ToList();
+            List<char> charS = s.ToLower().ToCharArray().ToList();
             charS.RemoveAll(x => !char.IsLetterOrDigit(x));
             int left = 0, right = charS.Count - 1;
             while(left < right)
@@ -48,44 +47,6 @@ namespace IsPalindrome
                 right--;
             }
             return left >= right;
-        }
-        public static string IsPalindrome(string text)
-        {
-            var reversed = "";
-
-            for (int i = text.Length - 1; i >= 0; i--)
-            {
-                reversed += text[i];
-            }
-
-            if (reversed.ToLower() == text.ToLower())
-                return $"The string {text} is Palindrome";
-            else
-                return $"The string {text} is NOT Palindrome";
-        }
-
-        public static bool IsPalindromeBool(string text)
-        {
-            var reversed = "";
-            var newText = "";
-
-            for (int i = 0; i < text.Length; i++)
-            {
-                if (char.IsLetterOrDigit(text[i]))
-                    newText += text[i];
-            }
-            text = newText;
-
-            for (int i = text.Length - 1; i >= 0; i--)
-            {
-                if (char.IsLetterOrDigit(text[i]))
-                    reversed += text[i];
-            }
-
-            if (reversed.ToLower() == text.ToLower())
-                return true;
-            else
-                return false;
         }
     }
 }
