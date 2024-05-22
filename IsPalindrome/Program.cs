@@ -36,7 +36,7 @@ namespace IsPalindrome
         // Two Pointer Approach
         public static bool IsPalindromeTwoPointer(string s)
         {
-            List<char> charS = s.ToLower().ToCharArray().ToList();
+            List<char> charS = s.ToLower().ToList();
             charS.RemoveAll(x => !char.IsLetterOrDigit(x));
             int left = 0, right = charS.Count - 1;
             while(left < right)
