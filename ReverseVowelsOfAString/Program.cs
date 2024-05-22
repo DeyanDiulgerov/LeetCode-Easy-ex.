@@ -18,22 +18,17 @@ namespace ReverseVowelsOfAString
 
         public static string ReverseVowelsOfAString(string s)
         {
-            var allVowels = new List<char>()
-            { 'a', 'e', 'i', 'o', 'u','A', 'E', 'I', 'O',  'U'};
-
-            var charS = s.ToCharArray();
+            HashSet<char> vowels = new HashSet<char>()
+            {'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'};
+            char[] charS = s.ToCharArray();
             int left = 0, right = charS.Length - 1;
-
-            while (left < right)
+            while(left < right)
             {
-                while (left < charS.Length && !allVowels.Contains(charS[left]))
+                while(left < right && !vowels.Contains(charS[left]))
                     left++;
-                while (right >= 0 && !allVowels.Contains(charS[right]))
+                while(left < right && !vowels.Contains(charS[right]))
                     right--;
-                if (left >= right)
-                    break;
-
-                var temp = charS[left];
+                char temp = charS[left];
                 charS[left] = charS[right];
                 charS[right] = temp;
                 left++;
