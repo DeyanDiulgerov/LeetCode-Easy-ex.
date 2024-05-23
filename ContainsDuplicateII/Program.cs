@@ -17,15 +17,16 @@ namespace ContainsDuplicateII
 
         public static bool ContainsDuplicateII(int[] nums, int k)
         {
-            for (int i = 0; i < nums.Length; i++)
+            var map = new Dictionary<int, int>();
+            for(int i = 0; i < nums.Length; i++)
             {
-                int j = i + 1;
-                while (j < nums.Length && Math.Abs(i - j) <= k)
+                if(!map.ContainsKey(nums[i]))
+                    map.Add(nums[i], i);
+                else
                 {
-                    if (nums[i] == nums[j])
+                    if(Math.Abs(map[nums[i]] - i) <= k)
                         return true;
-
-                    j++;
+                    map[nums[i]] = i;
                 }
             }
             return false;
