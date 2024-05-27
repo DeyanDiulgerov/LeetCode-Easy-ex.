@@ -17,14 +17,11 @@ namespace SpecialArrayWithXGreaterElementsThanOrEqualToX
 
         public static int SpecialArrayWithXGreaterElementsThanOrEqualToX(int[] nums)
         {
-            for (int i = 0; i < nums.Length + 1; i++)
-            {
-                if (nums.Count(n => n >= i) == i)
-                {
-                    return i;
-                }
-            }
-            return -1;
+            int h = nums.Length + 1;
+            while(h-- > 0)
+                if(nums.Count(x => x >= h) == h)
+                    break;
+            return h;
         }
     }
 }
