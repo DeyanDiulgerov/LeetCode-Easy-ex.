@@ -19,20 +19,19 @@ namespace LongestPalindrome
         }
         public static int LongestPalindrome(string s)
         {
-            var hashSet = new HashSet<char>();
-            int maxLength = 0;
-
-            foreach (char c in s)
+            int res = 0;
+            var set = new HashSet<char>();
+            foreach(char ch in s)
             {
-                if (hashSet.Contains(c))
+                if(set.Contains(ch))
                 {
-                    hashSet.Remove(c);
-                    maxLength += 2;
+                    set.Remove(ch);
+                    res += 2;
                 }
                 else
-                    hashSet.Add(c);
+                    set.Add(ch);
             }
-            return hashSet.Count() > 0 ? maxLength + 1 : maxLength;
+            return set.Count > 0 ? res + 1 : res;
         }
     }
 }
