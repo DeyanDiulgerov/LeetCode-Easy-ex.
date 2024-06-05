@@ -18,17 +18,24 @@ namespace FindCommonCharacters
 
         public static IList<string> FindCommonCharacters(string[] words)
         {
-            var result = new List<string>();
-            for (int i = 0; i < words[0].Length; i++)
+            string shortest = words.OrderBy(x => x.Length).First();
+            var res = new List<string>();
+            for(int i = 0; i < shortest.Length; i++)
             {
-                if (words.All(x => x.Contains(words[0][i])))
+                if(words.All(x => x.Contains(shortest[i])))
                 {
-                    result.Add(words[0][i].ToString());
-                    for (int j = 1; j < words.Length; j++)
-                        words[j] = words[j].Remove(words[j].IndexOf(words[0][i]), 1);
+                    if(res.Contains(shortest[i].ToString()))
+                    {
+                        if(words.All(x => x.Count(z => z == shortest[i]) >= res.Count(x => x == shortest[i].ToString()) + 1))
+                        {
+                            res.Add(shortest[i].ToString());
+                        }
+                    }
+                    else
+                        res.Add(shortest[i].ToString());
                 }
             }
-            return result;
+            return res;
         }
     }
 }
