@@ -18,29 +18,30 @@ namespace RelativeSortArray
 
         public static int[] RelativeSortArray(int[] arr1, int[] arr2)
         {
-            var result = new List<int>();
-
-            for (int i = 0; i < arr2.Length; i++)
+            var res = new List<int>();
+            var list1 = new List<int>(arr1);
+            var leftOutNums = new List<int>();
+            var map = new Dictionary<int, int>();
+            for(int i = 0; i < list1.Count; i++)
             {
-                var numCount = arr1.Count(x => x == arr2[i]);
-
-                for (int j = 0; j < numCount; j++)
-                    result.Add(arr2[i]);
+                if(!arr2.Contains(list1[i]))
+                {
+                    leftOutNums.Add(list1[i]);
+                    continue;
+                }
+                if(!map.ContainsKey(list1[i]))
+                    map.Add(list1[i], 1);
+                else
+                    map[list1[i]]++;
             }
-            var lastNums = new List<int>();
-
-            for (int i = 0; i < arr1.Length; i++)
+            leftOutNums.Sort();
+            foreach(int num in arr2)
             {
-                if (!result.Contains(arr1[i]))
-                    lastNums.Add(arr1[i]);
+                for(int i = 0; i < map[num]; i++)
+                    res.Add(num);
             }
-
-            lastNums.Sort();
-
-            for (int i = 0; i < lastNums.Count(); i++)
-                result.Add(lastNums[i]);
-
-            return result.ToArray();
+            res.AddRange(leftOutNums);
+            return res.ToArray();
         }
     }
 }
