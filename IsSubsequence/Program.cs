@@ -19,15 +19,13 @@ namespace IsSubsequence
         // 2nd Way beats 99.73% Runtime & 84.67% Memory
         public static bool IsSubsequence(string s, string t)
         {
-            int left = 0;
-            for (int right = 0; right < t.Length; right++)
+            int l = 0;
+            for (int r = 0; r < t.Length && l < s.Length; r++)
             {
-                if (left == s.Length)
-                    return true;
-                if (s[left] == t[right])
-                    left++;
+                if (s[l] == t[r])
+                    l++;
             }
-            return left == s.Length;
+            return l >= s.Length;
         }
         public static bool IsSubsequence(string s, string t)
         {
