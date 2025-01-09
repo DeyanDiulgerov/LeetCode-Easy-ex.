@@ -25,11 +25,9 @@ namespace MinimumNumberofOperationstoMakeElementsinArrayDistinct
                 var set = new HashSet<int>();
 
                 for (int r = l; r < nums.Count(); r++)
-                {
                     newList.Add(nums[r]);
-                    set.Add(nums[r]);
-                }
-                if (newList.Count == set.Count)
+
+                if (newList.Count == new HashSet<int>(newList).Count())
                     break;
                 count++;
             }
